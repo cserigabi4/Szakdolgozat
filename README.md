@@ -61,6 +61,7 @@ Dokumentáció folytatása, befejezése
 ![Szerep-funkció](Dokumentacio/szerep_funkcio_matrix.drawio.png)
 
 #### 3.3. Egyed-kapcsolat diagram
+![Szerep-funkció](Dokumentacio/egyed_kapcsolat_diagram.drawio.png)
 
 #### 3.4. Relációs adatmodell
 - Asztal(**id**, QR kód, x, y)
