@@ -61,7 +61,7 @@ Dokumentáció folytatása, befejezése
 ![Szerep-funkció](Dokumentacio/szerep_funkcio_matrix.drawio.png)
 
 #### 3.3. Egyed-kapcsolat diagram
-![Szerep-funkció](Dokumentacio/egyed_kapcsolat_diagram.drawio.png)
+![egyed-kapcsolat](Dokumentacio/egyed_kapcsolat_diagram.drawio.png)
 
 #### 3.4. Relációs adatmodell
 - Asztal(**id**, QR kód, x, y)
@@ -82,3 +82,4 @@ Dokumentáció folytatása, befejezése
 - Ertekelesek(**id**, nev, leiras, pont)
 
 #### 3.5. Osztály diagram
+![osztaly_diagram](Dokumentacio/osztaly_diagram.drawio.png)
