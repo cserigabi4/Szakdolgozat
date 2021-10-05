@@ -22,9 +22,8 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
+ <?= \app\widgets\Menu::widget()?>
 <?php $this->beginBody() ?>
-
-
 <main role="main" class="flex-shrink-0">
     <div class="container">
         <?= Breadcrumbs::widget([
