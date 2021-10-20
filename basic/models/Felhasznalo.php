@@ -99,4 +99,14 @@ class Felhasznalo extends \yii\db\ActiveRecord
     {
         return $this->hasMany(NapiLista::className(), ['felvette' => 'belepesi_azonosito']);
     }
+
+    public function validatePassword($jelszo){
+        return Yii::$app->getSecurity()->validatePassword($jelszo, $this->jelszo);
+    }
+
+    public function hashPassword($jelszo)
+    {
+        return Yii::$app->getSecurity()->generatePasswordHash($jelszo);
+    }
+
 }

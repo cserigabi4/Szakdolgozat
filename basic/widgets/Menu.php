@@ -14,7 +14,7 @@ class Menu  extends Widget
         parent::init();
 
         // itt nézni hogy be van-e jelentkezve és ha igen akkor más menu
-        if (false) {
+        if (true) {
             $this->items = [
                 ["nev" => "Asztaltérkép",
                     "url"=> "/site",
