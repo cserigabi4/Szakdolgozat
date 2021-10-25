@@ -1,5 +1,5 @@
 <div class="border rounded shadow-lg p-3 mb-5 bg-white" style="width: 50%">
-    <form action="/index.php?r=site/bejelentkezes" method="POST">
+    <form action="/site/bejelentkezes" method="POST">
         <div class="form-group">
             <label for="exampleInputEmail1">Belépési Azonosító</label>
             <input name="azonosito" type="text" class="form-control" id="azonosito" aria-describedby="emailHelp" placeholder="Enter email">

@@ -14,7 +14,9 @@ class Menu  extends Widget
         parent::init();
 
         // itt nézni hogy be van-e jelentkezve és ha igen akkor más menu
-        if (true) {
+        $session = \Yii::$app->session;
+
+        if (!is_null($session->get('felhasznalo'))) {
             $this->items = [
                 ["nev" => "Asztaltérkép",
                     "url"=> "/site",
@@ -52,6 +54,12 @@ class Menu  extends Widget
                     "active" => false,
                     "disable" => false
                 ],
+                ["nev" => "Kijelentkezés",
+                    "url"=> "/site/kijelentkezes",
+                    "jog"=> "",
+                    "active" => false,
+                    "disable" => false
+                ]
             ];
         } else {
             $this->items = [

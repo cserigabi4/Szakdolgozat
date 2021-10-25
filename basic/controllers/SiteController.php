@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\BejelentkezesForm;
 use app\models\Felhasznalo;
 use yii\web\Controller;
 
@@ -16,7 +15,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('bejelentkezes.tpl');
+        $session = \Yii::$app->session;
+        if(!is_null($session->get('felhasznalo'))){
+            return $this->render('main.tpl');
+        } else {
+            return $this->render('bejelentkezes.tpl');
+        }
     }
 
     public function beforeAction($action) {
@@ -32,14 +36,23 @@ class SiteController extends Controller
         if (!is_null($felhasznalo)) {
             if ($felhasznalo->validatePassword($jelszo)) {
                 $session = \Yii::$app->session;
-                $session->open();
-                $session->set('felhasznalo_jog', $felhasznalo->jog);
+                $session->set('felhasznalo', $felhasznalo);
+                return $this->render('main.tpl');
             } else {
                 var_dump('Hibás jelszó/név');
             }
         } else {
             var_dump('Hibás jelszó/név');
         }
+    }
+
+    public function actionKijelentkezes() {
+        \Yii::$app->session->remove('felhasznalo');
+        return $this->render('bejelentkezes.tpl');
+    }
+
+    public function actionEladofelulet() {
+        return $this->render('elado_felulet.tpl');
     }
 
 }

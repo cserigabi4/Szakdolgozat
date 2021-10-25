@@ -109,4 +109,14 @@ class Felhasznalo extends \yii\db\ActiveRecord
         return Yii::$app->getSecurity()->generatePasswordHash($jelszo);
     }
 
+    /**
+     * @return string
+     */
+    public function getJog(): string
+    {
+        return $this->jog;
+    }
+
+
+
 }
