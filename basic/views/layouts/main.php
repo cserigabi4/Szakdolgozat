@@ -25,22 +25,32 @@ AppAsset::register($this);
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@2.6.12/dist/vue.min.js"></script>
     <script src="https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue.min.js"></script>
-    <script  src = "https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue-icons.min.js" > </script>
+    <script src = "https://unpkg.com/bootstrap-vue@2.21.2/dist/bootstrap-vue-icons.min.js" > </script>
+
+    <script src="https://unpkg.com/konva@8/konva.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 <body class="d-flex flex-column h-100">
  <?= \app\widgets\Menu::widget()?>
 <?php $this->beginBody() ?>
-<main role="main" class="flex-shrink-0">
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= Alert::widget() ?>
-        <?= $content ?>
+<main role="main" class="flex-shrink-0 container-fluid">
+    <div class="row  h-100">
+       <div class="col-auto col-md-1 px-sm-2 px-0 bg-dark text-light h-100 shadow-lg">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3  min-vh-100 pt-2 text-white">
+            </div>
+        </div>
+        <div class="container col py-3"">
+            <?= Breadcrumbs::widget([
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
     </div>
 </main>
-
-<footer class="footer mt-auto py-3 text-muted">
+<footer class="footer mt-auto py-3 text-muted bg-dark ">
     <div class="container">
         <p class="float-left">&copy; Cseri Gábor <?= date('Y') ?> Szakdolgozat</p>
         <p class="float-right"></p>

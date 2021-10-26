@@ -8,6 +8,6 @@
             <label for="exampleInputPassword1">Jelszó</label>
             <input name="jelszo" type="password" class="form-control" id="jelszo" placeholder="Password">
         </div>
-        <button type="submit" class="btn btn-primary">Bejelentkezés</button>
+        <button type="submit" class="btn btn-dark">Bejelentkezés</button>
     </form>
 </div>

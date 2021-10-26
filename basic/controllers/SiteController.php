@@ -55,4 +55,16 @@ class SiteController extends Controller
         return $this->render('elado_felulet.tpl');
     }
 
+    public function actionAsztalterkep() {
+        return $this->render('asztal_terkep.tpl');
+    }
+
+    public function actionMenteskordinata() {
+        $request = \Yii::$app->request;
+        $id = $request->post('id');
+        $x = $request->post('x');
+        $y = $request->post('y');
+       var_dump($id, $x, $y);
+    }
+
 }

@@ -6,6 +6,7 @@
         </b-row>
 
     </template>
+
 </div>
 <script>
     new Vue({
