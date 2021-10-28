@@ -39,6 +39,7 @@ AppAsset::register($this);
     <div class="row  h-100">
        <div class="col-auto col-md-1 px-sm-2 px-0 bg-dark text-light h-100 shadow-lg">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3  min-vh-100 pt-2 text-white">
+
             </div>
         </div>
         <div class="container col py-3"">

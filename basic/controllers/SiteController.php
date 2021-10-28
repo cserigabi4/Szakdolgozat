@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Asztal;
 use app\models\Felhasznalo;
 use yii\web\Controller;
 
@@ -59,12 +60,40 @@ class SiteController extends Controller
         return $this->render('asztal_terkep.tpl');
     }
 
+    public function actionAsztalterkepelrendezes() {
+        $asztalok = Asztal::find()->all();
+        return $this->render('asztal_terkep_elrendezes.tpl', ["asztalok" => $asztalok]);
+    }
+
     public function actionMenteskordinata() {
         $request = \Yii::$app->request;
-        $id = $request->post('id');
         $x = $request->post('x');
         $y = $request->post('y');
-       var_dump($id, $x, $y);
+        $nev = $request->post('nev');
+
+        if(Asztal::findOne(['nev'=>$nev])){
+            $asztal = Asztal::findOne(['nev'=>$nev]);
+
+        } else {
+            $asztal = new Asztal();
+        }
+        $asztal->nev = $nev;
+        $asztal->x = $x;
+        $asztal->y = $y;
+
+        $asztal->currentX = $request->post('currentX');;
+        $asztal->currentY = $request->post('currentY');;
+        $asztal->xOffset = $request->post('xOffset');;
+        $asztal->yOffset = $request->post('yOffset');;
+
+        if($asztal->save()){
+            var_dump('siker');
+        } else {
+            var_dump();
+        }
+
+
+
     }
 
 }

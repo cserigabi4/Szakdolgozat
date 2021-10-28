@@ -9,8 +9,13 @@ use Yii;
  *
  * @property int $id
  * @property string|null $qr
- * @property int|null $x
- * @property int|null $y
+ * @property double|null $x
+ * @property double|null $y
+ * @property string $nev
+ * @property double $currentX
+ * @property double $currentY
+ * @property double $xOffset
+ * @property double $yOffset
  *
  * @property Rendeles[] $rendeles
  */
@@ -30,7 +35,7 @@ class Asztal extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['x', 'y'], 'integer'],
+            [['x', 'y'], 'double'],
             [['qr'], 'string', 'max' => 255],
         ];
     }
@@ -45,6 +50,7 @@ class Asztal extends \yii\db\ActiveRecord
             'qr' => 'Qr',
             'x' => 'X',
             'y' => 'Y',
+            'nev' => 'Nev'
         ];
     }
 

@@ -16,6 +16,7 @@
 
     var layer = new Konva.Layer();
 
+
     var rect2 = new Konva.Rect({
         x: 10,
         y: 10,
@@ -26,6 +27,17 @@
         cornerRadius: 10,
         draggable: false,
     });
+
+    var simpleText = new Konva.Text({
+        x: 20,
+        y: 25,
+        text: 'Simple Text',
+        fontSize: 15,
+        fontFamily: 'Calibri',
+        fill: 'green',
+    });
+
+
   /*  var group = new Konva.Group({
         x: 0,
         y: 0,
@@ -79,8 +91,8 @@
     });*/
 
     layer.add(rect2);
+    layer.add(simpleText);
 
     // add the layer to the stage
     stage.add(layer);
-
 </script>

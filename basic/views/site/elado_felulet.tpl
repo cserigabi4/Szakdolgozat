@@ -4,8 +4,11 @@
             <b-col> <b-table striped hover :fields="fields" :items="items" class="table-light shadow-lg pl-3 pr-3 pb-3 bg-white rounded align-self-baseline mr-2 mb-5 mx-auto text-center"></b-table></b-col>
             <b-col> <b-table striped hover  :items="items" class="table-light shadow-lg pl-3 pr-3 pb-3 bg-white rounded align-self-baseline mr-2 mb-5 mx-auto text-center"></b-table></b-col>
         </b-row>
-
     </template>
+
+    <div id="asztal" class="shadow-lg pl-3 pr-3 pb-3 bg-white rounded align-self-baseline mr-2 mb-5 mx-auto text-center" style="position: absolute; top: 462px; left:483px">
+        <p>Asztal</p>
+    </div>
 
 </div>
 <script>
