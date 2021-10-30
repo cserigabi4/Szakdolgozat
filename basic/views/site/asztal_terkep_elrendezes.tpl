@@ -3,12 +3,8 @@
     <div class="form-group">
         <label>Név:</label>
         <input class="form-control" type="text" value="" id="nev">
-        <label>Szélesség:</label>
-        <input class="form-control" type="number" value="100" id="x">
-        <label>Magasság:</label>
-        <input class="form-control" type="number" value="50" id="y">
-    <button class="btn btn-dark" onclick="felvesz()"> Felvesz </button>
     </div>
+    <button class="btn btn-dark" onclick="felvesz()"> Felvesz </button>
 </div>
 <div id="outerContainer">
     <div id="container">

@@ -39,7 +39,11 @@ AppAsset::register($this);
     <div class="row  h-100">
        <div class="col-auto col-md-1 px-sm-2 px-0 bg-dark text-light h-100 shadow-lg">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3  min-vh-100 pt-2 text-white">
-
+                <ul class="navbar-nav text-white text-center">
+                    <li class="nav-item text-dark">
+                        <a class="nav-link text-light" href="/site/asztalterkepelrendezes">Szerkesztés</a>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="container col py-3"">

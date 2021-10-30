@@ -57,7 +57,8 @@ class SiteController extends Controller
     }
 
     public function actionAsztalterkep() {
-        return $this->render('asztal_terkep.tpl');
+        $asztalok = Asztal::find()->all();
+        return $this->render('asztal_terkep.tpl', ["asztalok" => $asztalok]);
     }
 
     public function actionAsztalterkepelrendezes() {
