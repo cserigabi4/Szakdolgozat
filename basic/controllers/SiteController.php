@@ -81,11 +81,6 @@ class SiteController extends Controller
         $asztal->x = $x;
         $asztal->y = $y;
 
-        $asztal->currentX = $request->post('currentX');;
-        $asztal->currentY = $request->post('currentY');;
-        $asztal->xOffset = $request->post('xOffset');;
-        $asztal->yOffset = $request->post('yOffset');;
-
         if($asztal->save()){
             var_dump('siker');
         } else {

@@ -24,16 +24,16 @@
 </div>
 <script type="text/javascript">
     class Rect {
-        constructor(active, dragItem, nev, initialX = null, initialY = null, currentX = null, currentY = null, xOffset = 0, yOffset = 0) {
+        constructor(active, dragItem, nev, x = null, y = null) {
             this.active = active;
-            this.currentX = currentX;
-            this.currentY = currentY;
-            this.xOffset = xOffset;
-            this.yOffset = yOffset;
+            this.currentX = x;
+            this.currentY = y;
+            this.xOffset = x;
+            this.yOffset = y;
             this._dragItem = dragItem;
             this._nev = nev;
-            this.initialX = initialX;
-            this.initialY = initialY;
+            this.initialX = x;
+            this.initialY = y;
         }
 
         get nev() {
@@ -56,7 +56,6 @@
                 this.initialX = e.clientX -  this.xOffset;
                 this.initialY = e.clientY -  this.yOffset;
             }
-            console.log( 'start' , this.initialX ,  this.initialY)
             this.active = true;
 
         }
@@ -65,17 +64,12 @@
             this.initialY =  this.currentY;
 
              var t = this.dragItem.getBoundingClientRect();
-             console.log('ttttt',t.left,t.top)
              var formData = new FormData();
 
              formData.append('x', this.initialX);
              formData.append('y', this.initialY);
-             formData.append('currentX', this.currentX);
-             formData.append('currentY', this.currentY);
-             formData.append('xOffset', this.xOffset);
-             formData.append('yOffset', this.yOffset);
              formData.append('nev', this.nev);
-            console.log(formData)
+
              var request = new XMLHttpRequest();
              request.open("POST", "/site/menteskordinata");
              request.send(formData);
@@ -94,14 +88,11 @@
                 } else {
                     this.currentX = e.clientX -  this.initialX;
                     this.currentY = e.clientY -  this.initialY;
-                    console.log('közbe x',e.clientX, this.initialX);
-                    console.log('közbe y', e.clientY, this.initialY)
                 }
 
                 this.xOffset =  this.currentX;
                 this.yOffset =  this.currentY;
 
-                console.log('correntX:',this.currentX,  'correntY:',this.currentY);
                 this.setTranslate( this.currentX,  this.currentY, this.dragItem);
             }
         }
@@ -117,7 +108,7 @@
     {if $asztalok}
     {foreach $asztalok as $asztal}
         var d = document.querySelector("#{$asztal['nev']}");
-        var r = new Rect(false,d,'{$asztal['nev']}',{$asztal['x']},{$asztal['y']},{$asztal['currentX']},{$asztal['currentY']},{$asztal['xOffset']},{$asztal['yOffset']});
+        var r = new Rect(false,d,'{$asztal['nev']}',{$asztal['x']},{$asztal['y']});
         r.setTranslate({$asztal['x']},{$asztal['y']}, d)
         rects.push(r);
         console.log(rects);
@@ -172,6 +163,5 @@
 
         var rect = new Rect(false,div,nev);
         rects.push(rect);
-        console.log(rects);
     }
 </script>
