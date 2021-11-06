@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $kategoria_id
  * @property int $ar
+ * @property string $nev
  *
  * @property DolgozoFogyasztas[] $dolgozoFogyasztas
  * @property Kategoria $kategoria

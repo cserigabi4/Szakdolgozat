@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property string $nev
  * @property int $afa_kulcs
- * @property int $allergen
+ * @property boolean $allergen
  *
  * @property Termek[] $termeks
  */
@@ -32,7 +32,7 @@ class Kategoria extends \yii\db\ActiveRecord
         return [
             [['nev', 'afa_kulcs', 'allergen'], 'required'],
             [['nev'], 'string'],
-            [['afa_kulcs', 'allergen'], 'integer'],
+            [['afa_kulcs'], 'integer'],
         ];
     }
 
