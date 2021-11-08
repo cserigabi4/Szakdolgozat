@@ -6,6 +6,8 @@ namespace app\controllers;
 
 use app\models\Asztal;
 use yii\web\Controller;
+use Da\QrCode\QrCode;
+
 
 class AsztalterkepController extends Controller
 {
@@ -49,9 +51,15 @@ class AsztalterkepController extends Controller
 
         if(Asztal::findOne(['nev'=>$nev])){
             $asztal = Asztal::findOne(['nev'=>$nev]);
-
         } else {
             $asztal = new Asztal();
+            $qrCode = (new QrCode('http://localhost:8080/site/eladofelulet?asztal_id='.$asztal->id))
+               ->setSize(250)
+               ->setMargin(5);
+           $qrCode->writeFile(__DIR__ . '/' . $nev . '.png'); // writer defaults to PNG when none is specified
+           $asztal->qr = __DIR__ . '/' . $nev . '.png';
+           header('Content-Type: '.$qrCode->getContentType());
+
         }
         $asztal->nev = $nev;
         $asztal->x = $x;

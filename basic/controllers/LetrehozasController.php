@@ -24,8 +24,14 @@ class LetrehozasController extends Controller {
 
     public function beforeAction($action)
     {
-        $this->enableCsrfValidation = false;
-        return parent::beforeAction($action);
+        $session = \Yii::$app->session;
+        if(!is_null($session->get('felhasznalo'))){
+            $this->enableCsrfValidation = false;
+            return parent::beforeAction($action);
+        } else {
+            throw new \yii\web\HttpException(403, 'Nincs jogusoltsága az oldal eléréséhez!');
+        }
+
     }
 
     public function actionAlapanyag()

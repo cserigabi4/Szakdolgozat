@@ -2,8 +2,22 @@
     <template>
         <b-row>
             <b-col>
-               <div class="shadow-lg  bg-white rounded align-self-baseline mr-1 mb-1  w-25 text-center"><h2>{$asztal.nev} <b-icon icon="info-circle-fill" scale="0.6" variant="primary" v-b-modal.modal-asztal ></b-icon></h2></div>
-                <b-table sticky-header striped hover  @row-clicked="felvetel" :fields="fields" :items="termekek" class="table-light shadow-lg pl-3 pr-3 pb-3 bg-white rounded align-self-baseline mr-2 mb-5 mx-auto text-center"></b-table>
+                <b-row>
+                    <b-col>
+                        <div class="shadow-lg  bg-white rounded align-self-baseline mr-1 mb-1  text-center"><h2>{$asztal.nev} <b-icon icon="info-circle-fill" scale="0.6" variant="primary" v-b-modal.modal-asztal ></b-icon></h2></div>
+                    </b-col>
+                    <b-col>
+                        <b-form-select name="termek_kategoria" id="termek_kategoria" v-model="termek_kategoria" @change="kategoriaFilter()" :options="termek_kategoria_options">
+                            <template #first>
+                                <b-form-select-option value=null>-- Kérem Válasszon! --</b-form-select-option>
+                            </template>
+                        </b-form-select>
+                    </b-col>
+                    <b-col>
+                        <input name="termek_nev" type="text" v-model="termek_nev" @keyup="nevFilter()" class="form-control" id="termek_nev" placeholder="">
+                    </b-col>
+                </b-row>
+                <b-table :filter="filter" sticky-header striped hover  @row-clicked="felvetel" :fields="fields" :items="termekek" class="table-light shadow-lg pl-3 pr-3 pb-3 bg-white rounded align-self-baseline mr-2 mb-5 mx-auto text-center"></b-table>
                 <a href="/asztalterkep"><b-button class="btn btn-danger btn-lg" >Vissza</b-button></a>
             </b-col>
             <b-col class="h-25">
@@ -44,6 +58,7 @@
     <b-modal id="modal-asztal" title="Asztal információ" hide-footer>
         <div class="text-center">
             <h3>{$asztal.nev}</h3>
+            <img src="{$asztal.qr}">
         </div>
         <b-button class="mt-3" block @click="$bvModal.hide('modal-asztal')">Oké</b-button>
     </b-modal>
@@ -78,6 +93,16 @@
                     {/foreach}
                 {/if}
             ],
+            termekek_old: [],
+            termek_kategoria: '',
+            termek_kategoria_options: [],
+            termek_nev: '',
+            filter: '',
+        },
+        created: function () {
+            {foreach $kategoriak as $kategoria}
+            this.termek_kategoria_options.push({ value: '{$kategoria.nev}', text: '{$kategoria.nev}'});
+            {/foreach}
         },
         methods: {
             felvetel(item, index, event){
@@ -157,6 +182,18 @@
                 }).catch(function(error) {
                     console.log('nem jo');
                 });
+            },
+            kategoriaFilter: function() {
+                console.log(this.termek_kategoria);
+                if (!(this.termek_kategoria === 'null')) {
+                    console.log(this.termek_kategoria);
+                    this.filter = this.termek_kategoria;
+                } else {
+                    this.filter = '';
+                }
+            },
+            nevFilter: function () {
+                this.filter = this.termek_nev;
             }
         }
     });

@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\Asztal;
+use app\models\Kategoria;
 use app\models\Rendeles;
 use app\models\RendeltTermek;
 use app\models\Termek;
@@ -25,7 +26,7 @@ class EladofeluletController extends Controller
 
         $asztal = Asztal::findOne($asztal_id);
         $termekek = Termek::find()->with('kategoria')->all();
-
+        $kategoriak = Kategoria::find()->all();
         $rendeles = Rendeles::findOne(['asztal_id' => $asztal_id, 'allapot' => 1]);
         if ($rendeles) {
             $rendelt_termekek = RendeltTermek::findAll(['rendeles_id' => $rendeles->id, 'torolt' => null]);
@@ -34,7 +35,7 @@ class EladofeluletController extends Controller
             $rendelt_termekek = null;
         }
 
-        return $this->render('elado_felulet.tpl', ['termekek' => $termekek, 'asztal' => $asztal, 'rendeles' => $rendeles, 'rendelt_termekek' => $rendelt_termekek]);
+        return $this->render('elado_felulet.tpl', ['termekek' => $termekek, 'asztal' => $asztal, 'rendeles' => $rendeles, 'rendelt_termekek' => $rendelt_termekek, 'kategoriak' => $kategoriak]);
     }
 
     public function beforeAction($action)

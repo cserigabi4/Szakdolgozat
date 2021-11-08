@@ -22,8 +22,9 @@ class ComposerStaticInitf81e259c461ce0a28ffe30774b8303bd
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
+        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
+        'a9ed0d27b5a698798a89181429f162c5' => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib/Common/customFunctions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -45,6 +46,10 @@ class ComposerStaticInitf81e259c461ce0a28ffe30774b8303bd
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
+        ),
+        'Z' => 
+        array (
+            'Zxing\\' => 6,
         ),
         'W' => 
         array (
@@ -100,6 +105,7 @@ class ComposerStaticInitf81e259c461ce0a28ffe30774b8303bd
             'Doctrine\\Instantiator\\' => 22,
             'Doctrine\\Common\\Lexer\\' => 22,
             'DeepCopy\\' => 9,
+            'Da\\QrCode\\' => 10,
         ),
         'C' => 
         array (
@@ -151,6 +157,10 @@ class ComposerStaticInitf81e259c461ce0a28ffe30774b8303bd
         'cebe\\markdown\\' => 
         array (
             0 => __DIR__ . '/..' . '/cebe/markdown',
+        ),
+        'Zxing\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/khanamiryan/qrcode-detector-decoder/lib',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -277,6 +287,10 @@ class ComposerStaticInitf81e259c461ce0a28ffe30774b8303bd
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'Da\\QrCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/2amigos/qrcode-library/src',
+        ),
         'Codeception\\PHPUnit\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeception/phpunit-wrapper/src',
@@ -320,6 +334,10 @@ class ComposerStaticInitf81e259c461ce0a28ffe30774b8303bd
             'Behat\\Gherkin' => 
             array (
                 0 => __DIR__ . '/..' . '/behat/gherkin/src',
+            ),
+            'BaconQrCode' => 
+            array (
+                0 => __DIR__ . '/..' . '/bacon/bacon-qr-code/src',
             ),
         ),
     );

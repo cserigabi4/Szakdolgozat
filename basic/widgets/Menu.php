@@ -18,7 +18,7 @@ class Menu  extends Widget
 
         if (!is_null($session->get('felhasznalo'))) {
             $this->items = [
-                ["nev" => "Asztaltérkép",
+                ["nev" => "Asztalok",
                     "url"=> "/site/asztalterkep",
                     "jog"=> "",
                     "active" => false,
