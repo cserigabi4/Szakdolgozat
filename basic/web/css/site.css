@@ -119,4 +119,8 @@ a.desc:after {
     outline: none;
 }
 
+.modal-backdrop {
+    opacity:0.5 !important;
+}
+
 

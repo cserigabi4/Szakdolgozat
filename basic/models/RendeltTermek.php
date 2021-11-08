@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $rendeles_id
  * @property int $termek_id
- *
+ * @property boolean $torolt
  * @property Rendeles $rendeles
  * @property Termek $termek
  */

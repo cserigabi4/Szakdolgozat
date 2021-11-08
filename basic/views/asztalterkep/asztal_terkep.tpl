@@ -2,9 +2,11 @@
     <div id="container">
         {if $asztalok}
             {foreach $asztalok as $asztal}
-                <div id="{$asztal['nev']}" class="shadow-lg bg-white rounded align-self-baseline mx-auto text-center" style="width: 100px;height: 50px; position: absolute; top: 100px; left:300px;">
-                    <p>{$asztal['nev']}</p>
-                </div>
+                <a href="/eladofelulet?asztal_id={{$asztal['id']}}">
+                    <div id="{$asztal['nev']}" class="shadow-lg bg-white rounded align-self-baseline mx-auto text-center" style="width: 100px;height: 50px; position: absolute; top: 100px; left:300px;">
+                        <p>{$asztal['nev']}</p>
+                    </div>
+                </a>
             {/foreach}
         {/if}
     </div>

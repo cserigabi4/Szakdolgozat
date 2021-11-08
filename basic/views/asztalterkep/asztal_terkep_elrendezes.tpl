@@ -1,22 +1,24 @@
-<div id="vue_asztal_terkep">
-<div class="shadow-lg border rounded shadow-lg p-3 mb-5 bg-white w-25 text-center">
-    <div class="form-group">
-        <label>Név:</label>
-        <input class="form-control" type="text" value="" id="nev">
+<div>
+    <div class="shadow-lg border rounded shadow-lg p-3 mb-5 bg-white w-25 text-center">
+        <h3>Asztal felvétel</h3>
+        <hr class="my-4">
+        <div class="form-group">
+            <label>Asztal neve:</label>
+            <input class="form-control" type="text" value="" id="nev">
+        </div>
+        <button class="btn btn-dark" onclick="felvesz()"> Felvesz </button>
     </div>
-    <button class="btn btn-dark" onclick="felvesz()"> Felvesz </button>
-</div>
-<div id="outerContainer">
-    <div id="container">
-        {if $asztalok}
-            {foreach $asztalok as $asztal}
-                <div id="{$asztal['nev']}" class="shadow-lg bg-white rounded align-self-baseline mx-auto text-center" style="width: 100px;height: 50px; position: absolute; top: 100px; left:300px;">
-                    <p>{$asztal['nev']}</p>
-                </div>
-            {/foreach}
-        {/if}
+    <div id="outerContainer">
+        <div id="container">
+            {if $asztalok}
+                {foreach $asztalok as $asztal}
+                    <div id="{$asztal['nev']}" class="shadow-lg bg-white rounded align-self-baseline mx-auto text-center" style="width: 100px;height: 50px; position: absolute; top: 100px; left:300px;">
+                        <p>{$asztal['nev']}</p>
+                    </div>
+                {/foreach}
+            {/if}
+        </div>
     </div>
-</div>
 </div>
 <script type="text/javascript">
     class Rect {
@@ -24,8 +26,8 @@
             this.active = active;
             this.currentX = x;
             this.currentY = y;
-            this.xOffset = x;
-            this.yOffset = y;
+            this.xOffset = x ? x : 0;
+            this.yOffset = y ? y : 0;
             this._dragItem = dragItem;
             this._nev = nev;
             this.initialX = x;
@@ -65,9 +67,8 @@
              formData.append('x', this.initialX);
              formData.append('y', this.initialY);
              formData.append('nev', this.nev);
-
              var request = new XMLHttpRequest();
-             request.open("POST", "/site/menteskordinata");
+             request.open("POST", "/asztalterkep/menteskordinata");
              request.send(formData);
 
             this.active = false;
@@ -107,7 +108,6 @@
         var r = new Rect(false,d,'{$asztal['nev']}',{$asztal['x']},{$asztal['y']});
         r.setTranslate({$asztal['x']},{$asztal['y']}, d)
         rects.push(r);
-        console.log(rects);
     {/foreach}
     {/if}
 
@@ -142,14 +142,12 @@
 
     function felvesz(){
        var nev = document.getElementById('nev').value;
-       var x = document.getElementById('x').value;
-       var y = document.getElementById('y').value;
 
        var div = document.createElement("div");
        div.innerHTML = "<p class='' >"+ nev +"</p>";
        div.className = 'asztal ui-widget-content shadow-lg bg-white rounded align-self-baseline text-center';
-       div.style.width = x +'px';
-       div.style.height = y +'px';
+       div.style.width = '100px';
+       div.style.height = '50px';
        div.style.position = 'absolute';
        div.style.top =  '100px';
        div.style.left = '300px';

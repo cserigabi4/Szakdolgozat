@@ -10,7 +10,7 @@ use Yii;
  * @property int $id
  * @property int $asztal_id
  * @property int $ar
- * @property int $allapot
+ * @property boolean $allapot
  * @property int|null $kedvezmeny
  *
  * @property Asztal $asztal
@@ -33,7 +33,7 @@ class Rendeles extends \yii\db\ActiveRecord
     {
         return [
             [['asztal_id', 'ar', 'allapot'], 'required'],
-            [['asztal_id', 'ar', 'allapot', 'kedvezmeny'], 'integer'],
+            [['asztal_id', 'ar', 'kedvezmeny'], 'integer'],
             [['asztal_id'], 'exist', 'skipOnError' => true, 'targetClass' => Asztal::className(), 'targetAttribute' => ['asztal_id' => 'id']],
         ];
     }
