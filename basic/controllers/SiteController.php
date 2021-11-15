@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Asztal;
 use app\models\Felhasznalo;
+use app\widgets\SideBar;
 use yii\web\Controller;
 use Da\QrCode\QrCode;
 
@@ -20,13 +21,13 @@ class SiteController extends Controller
         $session = \Yii::$app->session;
         if(!is_null($session->get('felhasznalo'))){
 
-           /* $qrCode = (new QrCode('http://localhost:8080/site/eladofelulet'))
-                ->setSize(250)
-                ->setMargin(5);
-            $qrCode->writeFile(__DIR__ . '/code.png'); // writer defaults to PNG when none is specified
-
-            header('Content-Type: '.$qrCode->getContentType());*/
-
+            $bar = new Sidebar;
+            $bar->setItems([
+                            ['title' => 'Termék felvétel', 'url' => '/letrehozas', 'jog' => ''],
+                            ['title' => 'Asztalterkep', 'url' => '/asztalterkep', 'jog' => 'fonok']
+                           ]);
+            $widget = $bar->run();
+            \Yii::$app->view->params['sidebar'] = $widget;
 
             return $this->render('main.tpl');
         } else {

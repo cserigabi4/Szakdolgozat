@@ -6,6 +6,8 @@ namespace app\controllers;
 use app\models\Alapanyag;
 use app\models\Kategoria;
 use app\models\Termek;
+use app\models\TermekOsszetevoi;
+use yii\base\BaseObject;
 use yii\web\Controller;
 
 class LetrehozasController extends Controller {
@@ -17,6 +19,7 @@ class LetrehozasController extends Controller {
      */
     public function actionIndex()
     {
+
         $kategoriak = Kategoria::find()->all();
         $alapanyagok = Alapanyag::find()->all();
         return $this->render('termek_alapanyag_kategoria_felvetel.tpl', ['kategoriak' => $kategoriak, 'alapanyagok' => $alapanyagok]);
@@ -50,9 +53,10 @@ class LetrehozasController extends Controller {
         $alapanyag->mertekegyseg = $mertekegyseg;
 
         if ($alapanyag->save()) {
-            $response->data = ['message' => 'Siker'];
+            $response->data = ['message' => 'Siker', 'data' => $nev];
         } else {
-            $response->data = ['error' => 'Sikertelen mentés!'];
+           // var_dump($alapanyag->getErrors()['nev'][0]);
+            $response->data = ['error' => 'Sikertelen mentés!', 'data' => $alapanyag->getErrors()];
         }
 
         return $response;
@@ -91,13 +95,22 @@ class LetrehozasController extends Controller {
         $nev = $request->post('termek_nev');
         $kategoria = $request->post('termek_kategoria');
         $ar =   $request->post('termek_ar');
-
+        $termek_alapanyagok =  $request->post('termek_alapanyagok');
+        $termek_alapanyagok = explode(',', $termek_alapanyagok);
         $termek = new Termek();
         $termek->nev = $nev;
         $termek->kategoria_id = $kategoria;
         $termek->ar = $ar;
 
         if ($termek->save()) {
+            foreach ($termek_alapanyagok as $alapanyag_nev) {
+                $termek_osszetevoi = new TermekOsszetevoi();
+                $termek_osszetevoi->termek_id = $termek->id;
+                $alapanyag = Alapanyag::findOne(['nev' => $alapanyag_nev]);
+                $termek_osszetevoi->alapanyag_id = $alapanyag->id;
+                $termek_osszetevoi->save();
+            }
+
             $response->data = ['message' => 'Siker'];
         } else {
             $response->data = ['error' => 'Sikertelen mentés!'];

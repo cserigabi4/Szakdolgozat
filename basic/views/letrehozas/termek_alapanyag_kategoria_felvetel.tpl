@@ -16,15 +16,15 @@
                     </div>
                     <div class="form-group">
                         <label for="termek_osszetevoi">Termék összetevői</label>
-                        <b-form-tags
+                       <b-form-tags
                                 id="tags-component-select"
-                                v-model="value"
+                                v-model="termek_alapanyagok"
                                 size="lg"
                                 class="mb-2"
                                 add-on-change
                                 no-outer-focus
                         >
-                            <template v-slot="{ tags, inputAttrs, inputHandlers, disabled, removeTag }">
+                            <template v-slot="{ tags,inputId, inputAttrs, inputHandlers, disabled, removeTag }">
                                 <ul v-if="tags.length > 0" class="list-inline d-inline-block mb-2">
                                     <li v-for="tag in tags" :key="tag" class="list-inline-item">
                                         <b-form-tag
@@ -32,7 +32,7 @@
                                                 :title="tag"
                                                 :disabled="disabled"
                                                 variant="info"
-                                        >{{ tag }}</b-form-tag>
+                                        >%% tag %%</b-form-tag>
                                     </li>
                                 </ul>
                                 <b-form-select
@@ -66,6 +66,8 @@
                     <button class="btn btn-dark" @click="kategoriaRequest()">Mentés</button>
             </b-tab>
             <b-tab title="Alapanyag felvétel">
+                    <b-alert :show="alapanyag_hiba.length != 0" variant="danger">%% alapanyag_hiba %%</b-alert>
+                    <b-alert :show="alapanyag_siker" variant="success">Sikeres mentés!</b-alert>
                     <div class="form-group">
                         <label for="alapanyag_nev">Név</label>
                         <input name="alapanyag_nev" v-model="alapanyag_nev" type="text" class="form-control" id="alapanyag_nev" placeholder="">
@@ -86,9 +88,10 @@
 <script>
     new Vue({
         el: '#app',
+        delimiters: ['%%', '%%'],
         data: {
             options: [],
-            value: [],
+            termek_alapanyagok: [],
             alapanyag_nev: '',
             alapanyag_mennyiseg: 0,
             alapanyag_mertekegyseg: '',
@@ -101,25 +104,25 @@
             termek_kategoria_options: [],
             termek_ar: 0,
             termek_osszetevoi_options: [],
+            alapanyag_hiba: '',
+            alapanyag_siker: false,
         },
         created: function () {
             {foreach $kategoriak as $kategoria}
                 this.termek_kategoria_options.push({ value: '{$kategoria.id}', text: '{$kategoria.nev}'});
             {/foreach}
             {foreach $alapanyagok as $alapanyag}
-            this.termek_osszetevoi_options.push({ value: '{$alapanyag.id}', text: '{$alapanyag.nev}'});
-            {/foreach}
-            {foreach $alapanyagok as $alapanyag}
-            this.options.push('{$alapanyag.nev}');
+           this.termek_osszetevoi_options.push({ value: '{$alapanyag.nev}', text: '{$alapanyag.nev}'});
             {/foreach}
         },
         computed: {
             availableOptions() {
-                return this.termek_osszetevoi_options.filter(opt => this.value.indexOf(opt) === -1)
+                return this.termek_osszetevoi_options.filter(opt => this.termek_alapanyagok.indexOf(opt) === -1)
             }
         },
         methods: {
             alapanyagRequest: function(){
+                let self = this;
                 let form_data = new FormData();
                 form_data.append('alapanyag_nev',this.alapanyag_nev);
                 form_data.append('alapanyag_mennyiseg',this.alapanyag_mennyiseg);
@@ -130,7 +133,17 @@
                     timeout: 10000,
                     data: form_data
                 }).then(function (response) {
-                    console.log('siker');
+                    if (response.data.message) {
+                        self.alapanyag_siker = true;
+                        self.alapanyag_hiba = '';
+                        console.log(response.data.data);
+                        self.termek_osszetevoi_options.push({ value: response.data.data, text: response.data.data});
+                        return;
+                    }
+                    if (response.data.data.nev) {
+                        self.alapanyag_siker = false;
+                        self.alapanyag_hiba = response.data.data.nev[0];
+                    }
                 }).catch(function(error) {
                     console.log('nem jo');
                 });
@@ -158,6 +171,7 @@
                 form_data.append('termek_nev', this.termek_nev);
                 form_data.append('termek_kategoria', this.termek_kategoria);
                 form_data.append('termek_ar', this.termek_ar);
+                form_data.append('termek_alapanyagok', this.termek_alapanyagok);
                 axios({
                     method: 'post',
                     url: '/letrehozas/termek',

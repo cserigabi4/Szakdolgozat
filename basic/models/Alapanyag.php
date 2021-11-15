@@ -31,6 +31,7 @@ class Alapanyag extends \yii\db\ActiveRecord
     {
         return [
             [['nev', 'mennyiseg'], 'required'],
+            ['nev', 'unique', 'message' => 'Létező alapanyag név!'],
             [['nev', 'mertekegyseg'], 'string'],
             [['mennyiseg'], 'integer'],
         ];
