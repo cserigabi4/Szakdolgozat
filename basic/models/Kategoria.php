@@ -58,4 +58,8 @@ class Kategoria extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Termek::className(), ['kategoria_id' => 'id']);
     }
+    public function getTermekek()
+    {
+        return Termek::findAll(['kategoria_id' => $this->id]);
+    }
 }

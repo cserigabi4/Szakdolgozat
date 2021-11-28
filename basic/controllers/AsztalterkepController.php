@@ -59,21 +59,28 @@ class AsztalterkepController extends Controller
             $asztal = Asztal::findOne(['nev'=>$nev]);
         } else {
             $asztal = new Asztal();
+            $asztal->nev = $nev;
+            $asztal->x = $x;
+            $asztal->y = $y;
+            if($asztal->save()){
+                $qrCode = (new QrCode('http://localhost:8080/eladofelulet?asztal_id=' . $asztal->id))
+                    ->setSize(250)
+                    ->setMargin(5);
+                 $str = __DIR__ . '/img/qr_codes/' . $nev . '.png';
+                $qrCode->writeFile($str);
+                $asztal->qr =   \Yii::$app->basePath . '/img/qr_codes/' . $nev . '.png';
+                header('Content-Type: '.$qrCode->getContentType());
+            }
         }
         $asztal->nev = $nev;
         $asztal->x = $x;
         $asztal->y = $y;
 
         if($asztal->save()){
-            $qrCode = (new QrCode('http://localhost:8080/site/eladofelulet?asztal_id=' . $asztal->id))
-                ->setSize(250)
-                ->setMargin(5);
-            $qrCode->writeFile(__DIR__ . '../img/qr_codes/' . $nev . '.png'); // writer defaults to PNG when none is specified
-            $asztal->qr = __DIR__ . '../img/qr_codes' . $nev . '.png';
-            header('Content-Type: '.$qrCode->getContentType());
+
             var_dump('siker');
         } else {
-            var_dump();
+
         }
 
 

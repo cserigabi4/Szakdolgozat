@@ -9,7 +9,7 @@
                     <b-col>
                         <b-form-select name="termek_kategoria" id="termek_kategoria" v-model="termek_kategoria" @change="kategoriaFilter()" :options="termek_kategoria_options">
                             <template #first>
-                                <b-form-select-option value=null>-- Kérem Válasszon! --</b-form-select-option>
+                                <b-form-select-option value=null>-- Válasszon kategóriát --</b-form-select-option>
                             </template>
                         </b-form-select>
                     </b-col>
