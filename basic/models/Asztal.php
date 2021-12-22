@@ -50,7 +50,7 @@ class Asztal extends \yii\db\ActiveRecord
             'qr' => 'Qr',
             'x' => 'X',
             'y' => 'Y',
-            'nev' => 'Nev'
+            'nev' => 'Név'
         ];
     }
 
