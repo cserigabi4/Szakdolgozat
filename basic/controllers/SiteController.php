@@ -7,6 +7,7 @@ use app\models\Felhasznalo;
 use app\widgets\SideBar;
 use yii\web\Controller;
 use Da\QrCode\QrCode;
+use app\helper\UserHelper;
 
 class SiteController extends Controller
 {
@@ -31,7 +32,11 @@ class SiteController extends Controller
 
             return $this->render('main.tpl');
         } else {
-            return $this->render('bejelentkezes.tpl');
+            if(UserHelper::isMobileDevice()) {
+              return \Yii::$app->runAction('vendeg', null);
+            } else {
+                return $this->render('bejelentkezes.tpl');
+            }
         }
     }
 

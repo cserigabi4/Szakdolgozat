@@ -3,6 +3,8 @@
 
 namespace app\widgets;
 use yii\base\Widget;
+use app\helper\UserHelper;
+
 
 
 class Menu  extends Widget
@@ -62,20 +64,41 @@ class Menu  extends Widget
                 ]
             ];
         } else {
-            $this->items = [
-                ["nev" => "Bejelentkezés",
-                    "url"=> "/site",
-                    "jog"=> "",
-                    "active" => false,
-                    "disable" => false
-                ],
-            ];
+            if (UserHelper::isMobileDevice()){
+                $this->items = [
+                    ["nev" => "Asztal tartalma",
+                        "url"=> "/vendeg",
+                        "jog"=> "",
+                        "active" => false,
+                        "disable" => false
+                    ],
+                    ["nev" => "Termékek",
+                        "url"=> "/vendeg",
+                        "jog"=> "",
+                        "active" => false,
+                        "disable" => false
+                    ],
+                ];
+            } else {
+                $this->items = [
+                    ["nev" => "Bejelentkezés",
+                        "url"=> "/site",
+                        "jog"=> "",
+                        "active" => false,
+                        "disable" => false
+                    ],
+                ];
+            }
+
         }
     }
 
     public function run()
     {
-        return $this->render('menu.tpl', ["items" => $this->items]);
+        $mobil = UserHelper::isMobileDevice();
+        return $this->render('menu.tpl', ["items" => $this->items, "vendeg" => $mobil]);
     }
+
+
 
 }

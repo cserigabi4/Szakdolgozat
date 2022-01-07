@@ -114,6 +114,9 @@
             torles(item, index){
                 this.felvett_termekek.splice(index, 1);
                 this.ar_osszesen -=  parseInt(item.Ár);
+                if (this.ar_osszesen < 0) {
+                    this.ar_osszesen = 0;
+                }
                 this.termekTorles(item.id);
             },
             kedvezmenySzamol() {
