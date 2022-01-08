@@ -2,6 +2,7 @@
 
 
 namespace app\widgets;
+use app\models\Asztal;
 use yii\base\Widget;
 use app\helper\UserHelper;
 
@@ -67,7 +68,7 @@ class Menu  extends Widget
             if (UserHelper::isMobileDevice()){
                 $this->items = [
                     ["nev" => "Asztal tartalma",
-                        "url"=> "/vendeg",
+                        "url"=> "/vendeg/asztal",
                         "jog"=> "",
                         "active" => false,
                         "disable" => false
@@ -96,7 +97,15 @@ class Menu  extends Widget
     public function run()
     {
         $mobil = UserHelper::isMobileDevice();
-        return $this->render('menu.tpl', ["items" => $this->items, "vendeg" => $mobil]);
+        $session = \Yii::$app->session;
+        $asztal_id = $session->get('asztal_id');
+        if ($asztal_id) {
+            $asztal = Asztal::findOne($asztal_id);
+            $asztal_nev = $asztal->nev;
+        } else {
+            $asztal_nev = "HIBAAA";
+        }
+        return $this->render('menu.tpl', ["items" => $this->items, "vendeg" => $mobil, "asztal_nev" => $asztal_nev]);
     }
 
 

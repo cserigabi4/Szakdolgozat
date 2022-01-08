@@ -6,6 +6,7 @@ namespace app\controllers;
 
 use app\models\Asztal;
 use app\widgets\SideBar;
+use yii\helpers\Url;
 use yii\web\Controller;
 use Da\QrCode\QrCode;
 
@@ -57,6 +58,12 @@ class AsztalterkepController extends Controller
 
         if(Asztal::findOne(['nev'=>$nev])){
             $asztal = Asztal::findOne(['nev'=>$nev]);
+            $asztal->nev = $nev;
+            $asztal->x = $x;
+            $asztal->y = $y;
+            if($asztal->save()){
+                var_dump('siker');
+            }
         } else {
             $asztal = new Asztal();
             $asztal->nev = $nev;
@@ -66,24 +73,16 @@ class AsztalterkepController extends Controller
                 $qrCode = (new QrCode('http://localhost:8080/eladofelulet?asztal_id=' . $asztal->id))
                     ->setSize(250)
                     ->setMargin(5);
-                 $str = __DIR__ . '/img/qr_codes/' . $nev . '.png';
+                 $str = \Yii::$app->basePath . '/img/qr_codes/' . $nev . '.png';
+
                 $qrCode->writeFile($str);
-                $asztal->qr =   \Yii::$app->basePath . '/img/qr_codes/' . $nev . '.png';
+                $asztal->qr =    Url::to('@web/img/qr_codes/'. $nev . '.png');
+                var_dump( Url::to('@web/img/qr_codes/'. $nev . '.png'));
+                if($asztal->save()){
+                    var_dump('siker');
+                }
                 header('Content-Type: '.$qrCode->getContentType());
             }
         }
-        $asztal->nev = $nev;
-        $asztal->x = $x;
-        $asztal->y = $y;
-
-        if($asztal->save()){
-
-            var_dump('siker');
-        } else {
-
-        }
-
-
-
     }
 }

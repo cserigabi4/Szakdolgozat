@@ -1,7 +1,7 @@
 <div id="">
 <nav class="navbar navbar-expand-lg navbar-light bg-dark text-dark shadow-lg text-center">
     {if $vendeg}
-        <a class="navbar-brand text-light" href="/vendeg">Vendéglátós Szoftver Vendég</a>
+        <a class="navbar-brand text-light" href="/vendeg">{$asztal_nev}</a>
     {else}
         <a class="navbar-brand text-light" href="/">Vendéglátós Szoftver</a>
     {/if}

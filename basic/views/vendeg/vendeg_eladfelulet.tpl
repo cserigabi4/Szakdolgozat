@@ -19,7 +19,7 @@
                                             align="center"
                                     >
                                         <b-card-text>
-                                            <b-img  rounded thumbnail src="https://s.24.hu/app/uploads/2017/08/socc88r.png" fluid alt="Fluid image"></b-img>
+                                            <b-img  rounded thumbnail src="http://localhost/Szakdolgozat/Szakdolgozat/basic/img/termekek/sor.png" fluid alt="Fluid image"></b-img>
                                         </b-card-text>
                                         <b-card-text>
                                             <b-button variant="info">Részletek</b-button>
@@ -43,7 +43,7 @@
         el: '#vendeg_app',
         delimiters: ['%%', '%%'],
         data: {
-            text: 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor'
+            text: 'szoveg'
         }
     });
 </script>
