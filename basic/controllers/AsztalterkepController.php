@@ -77,7 +77,7 @@ class AsztalterkepController extends Controller
 
                 $qrCode->writeFile($str);
                 $asztal->qr =    Url::to('@web/img/qr_codes/'. $nev . '.png');
-                var_dump( Url::to('@web/img/qr_codes/'. $nev . '.png'));
+               // var_dump( Url::to('@web/img/qr_codes/'. $nev . '.png'));
                 if($asztal->save()){
                     var_dump('siker');
                 }

@@ -23,7 +23,7 @@
                                         </b-card-text>
                                         <b-card-text>
                                             <b-button variant="info">Részletek</b-button>
-                                            <b-button variant="success">Hozzáadás az asztalhoz</b-button>
+                                            <b-button variant="success" @click="termekFelvetel({$termek.id},{$termek.ar})">Hozzáadás az asztalhoz</b-button>
                                         </b-card-text>
                                     </b-card>
                                 {/foreach}
@@ -43,7 +43,26 @@
         el: '#vendeg_app',
         delimiters: ['%%', '%%'],
         data: {
-            text: 'szoveg'
+            felvett_termekek: [],
+        },
+        methods: {
+            termekFelvetel: function(termek_id,ar){
+                console.log(termek_id);
+                let self = this;
+                let form_data = new FormData();
+                form_data.append('termek_id',termek_id);
+                form_data.append('ar',ar);
+                axios({
+                    method: 'post',
+                    url: '/vendeg/felvetel',
+                    timeout: 10000,
+                    data: form_data
+                }).then(function (response) {
+                    console.log('siker',self.rendeles_id);
+                }).catch(function(error) {
+                    console.log('nem jo');
+                });
+            },
         }
     });
 </script>

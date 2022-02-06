@@ -1,6 +1,6 @@
 <div id="vendeg_asztal">
-    <div class="text-center border shadow border-5 badge-success">
-        <h2 class="pt-2 font-weight-bold">Összesen: 3000 Ft</h2>
+    <div class="text-center border shadow border-5 badge-light">
+        <h2 class="pt-2 font-weight-bold">Összesen: %% ar_osszesen %% Ft</h2>
     </div>
     <hr>
     <div class="text-center border shadow border-5 mb-2">
@@ -37,7 +37,8 @@
                 {foreach $rendelt_termekek as $termek}
                 { nev: '{$termek.termek.nev}', ar: '{$termek.termek.ar} Ft' },
                 {/foreach}
-            ]
+            ],
+            ar_osszesen: {if $rendeles} {$rendeles.ar} {else} 0 {/if},
         }
     });
 </script>

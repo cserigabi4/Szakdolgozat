@@ -25,43 +25,50 @@ class Menu  extends Widget
                     "url"=> "/asztalterkep",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "bookmark-fill"
                 ],
                 ["nev" => "Jelenléti ív",
                     "url"=> "Teszt2",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "clipboard-check"
                 ],
                 ["nev" => "Beosztás",
                     "url"=> "Teszt2",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "calendar-fill"
                 ],
                 ["nev" => "Statisztikák",
                     "url"=> "Teszt2",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "bar-chart-fill"
                 ],
                 ["nev" => "Saját fogyaszts",
                     "url"=> "Teszt2",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "person-lines-fill"
                 ],
                 ["nev" => "Saját Profil",
                     "url"=> "Teszt2",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "person-fill"
                 ],
                 ["nev" => "Kijelentkezés",
                     "url"=> "/site/kijelentkezes",
                     "jog"=> "",
                     "active" => false,
-                    "disable" => false
+                    "disable" => false,
+                    "icon" => "arrow-right-square-fill"
                 ]
             ];
         } else {
@@ -71,13 +78,15 @@ class Menu  extends Widget
                         "url"=> "/vendeg/asztal",
                         "jog"=> "",
                         "active" => false,
-                        "disable" => false
+                        "disable" => false,
+                        "icon" => "cart-fill"
                     ],
                     ["nev" => "Termékek",
                         "url"=> "/vendeg",
                         "jog"=> "",
                         "active" => false,
-                        "disable" => false
+                        "disable" => false,
+                        "icon" => "cart-plus-fill"
                     ],
                 ];
             } else {
@@ -86,7 +95,8 @@ class Menu  extends Widget
                         "url"=> "/site",
                         "jog"=> "",
                         "active" => false,
-                        "disable" => false
+                        "disable" => false,
+                        "icon" => ""
                     ],
                 ];
             }
